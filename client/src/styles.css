@@ -1,0 +1,48 @@
+:root {
+  --vs-primary: #0d6efd;
+  --vs-dark: #0b2239;
+  --vs-muted: #6c757d;
+  --vs-bg: #0b1220;
+}
+
+html, body, #root { height: 100%; }
+body {
+  background:
+    linear-gradient(180deg, rgba(11,18,32,0.95) 0%, rgba(14,26,43,0.9) 40%, rgba(15,36,56,0.9) 100%),
+    url('https://images.unsplash.com/photo-1494976388531-d1058494cdd8?q=80&w=1920&auto=format&fit=crop') center/cover fixed no-repeat;
+  color: #e9ecef;
+}
+
+.navbar {
+  background: rgba(13, 17, 23, 0.8) !important;
+  backdrop-filter: blur(8px);
+}
+.navbar-brand { font-weight: 700; letter-spacing: 0.3px; }
+
+.page-title {
+  font-weight: 700;
+  letter-spacing: 0.2px;
+}
+
+.card {
+  border: 0;
+  background: #111827;
+  color: #e9ecef;
+}
+.card-header { background: transparent; border-bottom: 1px solid rgba(255,255,255,0.08); }
+.card-shadow { box-shadow: 0 12px 30px rgba(0,0,0,0.35); }
+
+.list-group-item { background: #0f1826; color: #dbe2ea; border-color: rgba(255,255,255,0.08); }
+
+.nav-tabs .nav-link, .nav-pills .nav-link { color: #cbd5e1; }
+.nav-tabs .nav-link.active, .nav-pills .nav-link.active { color: #fff; background: var(--vs-primary); }
+
+.btn-primary { box-shadow: 0 6px 16px rgba(13,110,253,0.3); }
+.btn-success { box-shadow: 0 6px 16px rgba(25,135,84,0.3); }
+
+.muted { color: var(--vs-muted); }
+
+.section-gap { margin-top: 1rem; margin-bottom: 1rem; }
+
+
+
