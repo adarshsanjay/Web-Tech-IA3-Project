@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import API_BASE_URL from '../api';
 
 export default function Register() {
   const [form, setForm] = useState({ name: '', email: '', password: '', phone: '' });
@@ -8,7 +9,7 @@ export default function Register() {
   async function submit(e){
     e.preventDefault(); setMessage('');
     try{
-      const res = await fetch('/api/auth/register', { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify(form)});
+      const res = await fetch('${API_BASE_URL}/api/auth/register', { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify(form)});
       const data = await res.json();
       if(!res.ok) throw new Error(data.message || 'Failed to register');
       // Save token and user, go to client dashboard

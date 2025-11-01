@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Routes, Route, Link } from 'react-router-dom';
+import API_BASE_URL from '../api';
 
 function useAuthHeaders() {
   const token = localStorage.getItem('token');
@@ -24,7 +25,7 @@ function Users() {
   async function create(e) {
     e.preventDefault(); setMsg('');
     try {
-      const res = await fetch('/api/admin/users', {
+      const res = await fetch('${API_BASE_URL}/api/admin/users', {
         method: 'POST',
         headers: useAuthHeaders(),
         body: JSON.stringify(form)
@@ -90,7 +91,7 @@ function Vehicles() {
   async function create(e) {
     e.preventDefault();
     setMsg('');
-    const res = await fetch('/api/admin/vehicles', { method: 'POST', headers, body: JSON.stringify(form) });
+    const res = await fetch('${API_BASE_URL}/api/admin/vehicles', { method: 'POST', headers, body: JSON.stringify(form) });
     if (res.ok) { setForm({ owner: '', make: '', model: '' }); setMsg('Created'); load(); }
     else setMsg('Error creating');
   }
@@ -134,7 +135,7 @@ function Services() {
   useEffect(()=>{ load(); },[]);
   async function create(e){
     e.preventDefault(); setMsg('');
-    const res = await fetch('/api/admin/services',{ method:'POST', headers, body: JSON.stringify(form)});
+    const res = await fetch('${API_BASE_URL}/api/admin/services',{ method:'POST', headers, body: JSON.stringify(form)});
     const data = await res.json().catch(()=>({}));
     if (!res.ok) { setMsg(data.message || 'Failed to add service'); return; }
     setForm({ vehicle:'', description:'', cost:0}); setMsg('Service recorded'); load();
@@ -193,7 +194,7 @@ function Appointments() {
     e.preventDefault(); setMsg('');
     if (!form.customer || !form.vehicle || !form.date) { setMsg('All fields are required'); return; }
     const isoDate = new Date(form.date).toISOString();
-    const res = await fetch('/api/admin/appointments', { method:'POST', headers, body: JSON.stringify({ ...form, date: isoDate })});
+    const res = await fetch('${API_BASE_URL}/api/admin/appointments', { method:'POST', headers, body: JSON.stringify({ ...form, date: isoDate })});
     const data = await res.json().catch(()=>({}));
     if (!res.ok) { setMsg(data.message || 'Failed to create'); return; }
     setForm({ customer:'', vehicle:'', date:''});
