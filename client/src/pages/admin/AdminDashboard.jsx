@@ -25,7 +25,7 @@ function Users() {
   async function create(e) {
     e.preventDefault(); setMsg('');
     try {
-      const res = await fetch('${API_BASE_URL}/api/admin/users', {
+      const res = await fetch('${import.meta.env.VITE_API_URL}/api/admin/users', {
         method: 'POST',
         headers: useAuthHeaders(),
         body: JSON.stringify(form)

@@ -12,7 +12,7 @@ function MyVehicles() {
   const [form, setForm] = useState({ make: '', model: '' });
   async function load(){ const r=await fetch('/api/client/vehicles',{ headers: headers()}); setVehicles(await r.json()); }
   useEffect(()=>{ load(); },[]);
-  async function create(e){ e.preventDefault(); await fetch('${API_BASE_URL}/api/client/vehicles',{ method:'POST', headers: headers(), body: JSON.stringify(form)}); setForm({ make:'', model:''}); load(); }
+  async function create(e){ e.preventDefault(); await fetch('${import.meta.env.VITE_API_URL}/api/client/vehicles',{ method:'POST', headers: headers(), body: JSON.stringify(form)}); setForm({ make:'', model:''}); load(); }
   return (
     <div>
       <h3>My Vehicles</h3>
@@ -53,7 +53,7 @@ function Appointments() {
     e.preventDefault(); setMsg('');
     if (!form.vehicle || !form.date) { setMsg('Vehicle and Date are required'); return; }
     const isoDate = new Date(form.date).toISOString();
-    const res = await fetch('${API_BASE_URL}/api/client/appointments',{
+    const res = await fetch('${import.meta.env.VITE_API_URL}/api/client/appointments',{
       method:'POST', headers: headers(), body: JSON.stringify({ vehicle: form.vehicle, date: isoDate })
     });
     const data = await res.json().catch(()=>({}));
@@ -84,7 +84,7 @@ function Feedback() {
   async function submit(e){
     e.preventDefault(); setMsg('');
     try {
-      const res = await fetch('${API_BASE_URL}/api/client/feedback', { method:'POST', headers: headers(), body: JSON.stringify(form)});
+      const res = await fetch('${import.meta.env.VITE_API_URL}/api/client/feedback', { method:'POST', headers: headers(), body: JSON.stringify(form)});
       const data = await res.json().catch(()=>({}));
       if (!res.ok) throw new Error(data.message || 'Failed to submit');
       setMsg('Thanks for your feedback!');
