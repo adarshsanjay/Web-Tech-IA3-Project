@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Routes, Route, Link } from 'react-router-dom';
-import API_BASE_URL from '../api';
+import api from "../../api";
 
 function headers() {
   const token = localStorage.getItem('token');
